@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lazycard{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Lazycard</h1>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}!</p>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Lazycard</p>
+    </footer>
+
+    <script>
+        // Inject initial data from Django
+        window.INITIAL_DATA = {{ initial_data|safe }};
+    </script>
+    <script src="/static/js/bundle.js" defer></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
